@@ -2,6 +2,7 @@ import submissions from './data.js';
 
 import nodemailer from 'nodemailer';
 
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -36,7 +37,7 @@ export async function POST(request) {
 
   try {
     await sendEmail(body);
-    return new Response(JSON.stringify({ message: 'Form was submitted successfully' }), {
+    return new Response(JSON.stringify({ message: 'Form was submitted successfully.' }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +45,7 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error('Error sending email:', error);
-    return new Response(JSON.stringify({ message: 'Failed to send email' }), {
+    return new Response(JSON.stringify({ message: 'Failed to send email.' }), {
       status: 500,
       headers: {
         'Content-Type': 'application/json',

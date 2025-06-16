@@ -26,6 +26,13 @@ const info = [
     }
 ]
 
+const serviceLabels = {
+    "1": "Private Coaching",
+    "2": "Group Coaching",
+    "3": "Training Games",
+    "4": "Other",
+  };
+
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -48,13 +55,13 @@ const Contact = () => {
     const handleSelectChange = (value) => {
         setFormData({
             ...formData,
-            service: value
+            service: serviceLabels[value]
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Send the form data to your server or API endpoint
+        // Send the form data 
         const response = await fetch('/api/contact', {
             method: 'POST',
             headers: {
@@ -85,7 +92,7 @@ const Contact = () => {
                 {/* contact form */}
                 <div className="xl:h-[54%] order-2 xl:order-none">
                     <form className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl" onSubmit={handleSubmit}>
-                        <h3 className="text-4xl text-accent">Interested in coaching?</h3>
+                        <h3 className="text-4xl text-accent">Interested in lessons?</h3>
                         <p  className="text-white/60">Fill out the form below and I'll get back to you as soon as possible. </p>
                         {/*input fields */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

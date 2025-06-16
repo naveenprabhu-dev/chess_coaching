@@ -23,8 +23,14 @@ const services = [
   {
     num: '03',
     title: 'Training Games',
-    description: 'I offer training games at 20 to 30 minutes per side. You can pick which color or opening you want to work on, or if you want to play without anything specific in mind, that\'s also fine! We\'ll also analyze the game thoroughly afterwards. Rate: $15 per game.',
+    description: 'I offer training games at 20 to 30 minutes per side. You can pick which color or opening you want to work on, or if you want to play without anything specific in mind, that\'s also fine! We\'ll also analyze the game thoroughly afterwards. Rate: $20 per game.',
    
+  },
+
+  {
+    num: '04', 
+    title: 'Other', 
+    description: 'Anything specific that you want to work on? Describe it in the contact section, and I\'d be happy to get back to you.'
   }
 
 
@@ -40,13 +46,13 @@ const Services = () => {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" }}}
-          className="grid grid-cols-1 md:grid-cols-2 gap-[60px]"
+          className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-start"
         >
           {services.map((service, index) => (
-            <div key={index} className="flex-1 flex flex-col justify-center gap-6 group">
+            <div key={index} className="flex flex-col gap-6 group self-start">
               <div className= "w-full flex justify-between items-center">
                 {/* think about removing the number, looks cleaner, and changing the title font of each service */}
-                <div className= "text-5xl font-extrabold text-outline text-transparent group-hover: text-outline-hover">{service.num} </div>
+                <div className= "text-5xl font-extrabold text-outline text-transparent group-hover: text-outline-hover leading-none">{service.num} </div>
               </div>
               <div>
                 <h2 className="text-accent text-[28px]">{service.title}</h2>
