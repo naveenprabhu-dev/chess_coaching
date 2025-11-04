@@ -8,7 +8,7 @@ Hosting: Vercel
 
 # Getting Started
 1) Clone:
-git clone https://github.com/YOUR-USER/YOUR-REPO.git
+git clone https://github.com/YOUR-USER/YOUR-REPO.git,
 cd YOUR-REPO
 
 3) Install deps
