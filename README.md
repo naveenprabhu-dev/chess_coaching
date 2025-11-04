@@ -7,12 +7,12 @@ UI: React, Tailwind CSS
 Hosting: Vercel
 
 # Getting Started
-**1) Clone:**
+## 1) Clone:
 git clone https://github.com/YOUR-USER/YOUR-REPO.git,
 cd YOUR-REPO
 
-**2) Install deps**
+## 2) Install deps
 npm install
 
-**3) Run dev server**
+## 3) Run dev server
 npm run dev    
