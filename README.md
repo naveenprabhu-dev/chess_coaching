@@ -2,9 +2,9 @@
 A simple website for my chess coaching services: who I am, what I offer, and a contact form to reach me. 
 
 # Tech Stack
-Framework: Next.js
-UI: React, Tailwind CSS
-Hosting: Vercel
+- Framework: Next.js
+- UI: React, Tailwind CSS
+- Hosting: Vercel
 
 # Getting Started
 ```bash
