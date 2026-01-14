@@ -1,19 +1,31 @@
-import React from 'react'
+"use client"; // Required for Framer Motion
+
+import React from 'react';
 import Image from 'next/image';
+import { motion } from "framer-motion"; // Import motion
 
 const About = () => {
   return (
-
     <section>
-      <div className="container mx-auto flex">
+      {/* Wrapping the container in motion.div. 
+         Note: delay is set to 0.2 instead of 2.4 for better speed.
+      */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: 1, 
+          transition: { delay: 0.2, duration: 0.3, ease: "easeIn" } 
+        }}
+        className="container mx-auto flex"
+      >
         <div className="flex flex-col gap-6 p-10 bg-[#252528] rounded-xl w-3/5">
           <h3 className="text-3xl text-accent">
             About Me
           </h3>
           <p>
            I've been a competitive chess player for over 10 years, and still continue playing actively to this day.  
-           Some of my acccomplishments include winning the 2022 NC State Scholastics, the 2023 NC State Championship, and participating in the Denker and Barber Tournament of Champions. 
-           I achieved National Master in 2022, and am currently at my peak ratings of 2361 USCF and 2257 FIDE.
+           Some of my accomplishments include winning the 2022 NC State Scholastics, the 2023 NC State Championship, and participating in the Denker and Barber Tournament of Champions. 
+           I achieved National Master in 2022, and am currently at my peak ratings of 2381 USCF and 2261 FIDE.
           </p>
 
           <p>
@@ -22,13 +34,17 @@ const About = () => {
         </div>
 
         <div className="flex-1 flex items-start justify-end ml-6">
-         <Image src="/Naveen_Yellowstone.PNG" className="h-128 w-full object-cover rounded-xl" width={500} height={300} />
+         <Image 
+            src="/Naveen_Yellowstone.PNG" 
+            className="h-128 w-full object-cover rounded-xl" 
+            width={500} 
+            height={300} 
+            priority // Recommended for images high up on the page
+          />
         </div>
-
-      </div> 
+      </motion.div> 
     </section>
-    
   )
 }
 
-export default About
+export default About;

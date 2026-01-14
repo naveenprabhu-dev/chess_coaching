@@ -1,12 +1,22 @@
-import React from 'react'
+"use client"; // Required for Framer Motion
+
+import React from 'react';
 import Image from 'next/image';
+import { motion } from "framer-motion"; // Import motion
 
 const Coaching_Philosophy = () => {
   return (
-
     <section>
-      <div className="container mx-auto flex">
-        <div className="flex flex-col gap-6 p-10 bg-[#252528] rounded-xl w-3/5">
+      {/* Wrapped the content in motion.div with a 0.2s delay */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: 1, 
+          transition: { delay: 0.2, duration: 0.3, ease: "easeIn" } 
+        }}
+        className="container mx-auto flex flex-col md:flex-row"
+      >
+        <div className="flex flex-col gap-6 p-10 bg-[#252528] rounded-xl w-full md:w-3/5">
           <h3 className="text-3xl text-accent">
             Coaching Philosophy
           </h3>
@@ -24,17 +34,20 @@ const Coaching_Philosophy = () => {
            Additionally, I'll provide you with some puzzles to work on, so that we can discuss at the beginning of the next lesson. 
            When outside of the lesson, feel free to reach out! I'd love to help you prepare openings for tournaments, answer any questions, or just discuss anything chess related!
           </p>
-          
         </div>
 
-        <div className="w-full flex-1 flex items-start justify-end ml-6">
-         <Image src="/Naveen_CSO.PNG" className="h-128 w-full object-cover rounded-xl" width={500} height={300} />
+        <div className="w-full flex-1 flex items-start justify-end mt-6 md:mt-0 md:ml-6">
+         <Image 
+            src="/Naveen_CSO.PNG" 
+            className="h-128 w-full object-cover rounded-xl" 
+            width={500} 
+            height={300} 
+            priority // Helps the image appear instantly with the fade-in
+          />
         </div>
-
-      </div> 
+      </motion.div> 
     </section>
-    
   )
 }
 
-export default Coaching_Philosophy
+export default Coaching_Philosophy;

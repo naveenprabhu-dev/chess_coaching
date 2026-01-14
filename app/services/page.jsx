@@ -23,7 +23,7 @@ const services = [
   {
     num: '03',
     title: 'Training Games',
-    description: 'I offer training games at 20 to 30 minutes per side. You can pick which color or opening you want to work on, or if you want to play without anything specific in mind, that\'s also fine! We\'ll also analyze the game thoroughly afterwards. Rate: $20 per game.',
+    description: 'I offer training games at 15 minutes per side. You can pick which color or opening you want to work on, or if you want to play without anything specific in mind, that\'s also fine! We\'ll also analyze the game thoroughly afterwards. Rate: $20 per game.',
    
   },
 
@@ -45,7 +45,8 @@ const Services = () => {
       <div className="container mx-auto">
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" }}}
+          animate={{ opacity: 1, 
+            transition: { delay: 0.2, duration: 0.3, ease: "easeIn" }}}
           className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-start"
         >
           {services.map((service, index) => (
