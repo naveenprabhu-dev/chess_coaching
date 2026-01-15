@@ -38,7 +38,7 @@ const Coaching_Philosophy = () => {
 
         <div className="w-full flex-1 flex items-start justify-end mt-6 md:mt-0 md:ml-6">
          <Image 
-            src="/Naveen_CSO.png" 
+            src="/Naveen_CSO.jpg" 
             className="h-128 w-full object-cover rounded-xl" 
             width={500} 
             height={300} 

@@ -15,8 +15,6 @@ const Testimonial = ({ text, author }) => (
   </div>
 );
 
-
-
 const Home = () => {
   return (
     <section className="min-h-screen">
