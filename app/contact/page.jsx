@@ -14,7 +14,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// Added ImSpinner8 for the loading animation
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { ImSpinner8 } from "react-icons/im"; 
 import { motion, AnimatePresence } from 'framer-motion';
 
 const info = [
@@ -38,7 +40,8 @@ const serviceLabels = {
 };
 
 const Contact = () => {
-    const [isSubmitted, setIsSubmitted] = useState(false); // New state for success view
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isPending, setIsPending] = useState(false); // New state for loading
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -65,18 +68,26 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
+        setIsPending(true); // Start loading
 
-        if (response.ok) {
-            setIsSubmitted(true); // Toggle the view on success
-        } else {
-            alert('Failed to submit the form. Please try again.');
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                alert('Failed to submit the form. Please try again.');
+            }
+        } catch (error) {
+            alert('An error occurred. Please check your connection.');
+        } finally {
+            setIsPending(false); // Stop loading regardless of outcome
         }
     };
 
@@ -89,7 +100,6 @@ const Contact = () => {
             <div className="container mx-auto">
                 <div className="flex flex-col xl:flex-row gap-[30px]">
                     
-                    {/* Left Column: Form or Success Message */}
                     <div className="xl:w-[54%] order-2 xl:order-none min-h-[500px]">
                         <AnimatePresence mode="wait">
                             {!isSubmitted ? (
@@ -101,7 +111,7 @@ const Contact = () => {
                                     className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl" 
                                     onSubmit={handleSubmit}
                                 >
-                                    <h3 className="text-4xl text-accent">Want to improve?</h3>
+                                    <h3 className="text-4xl text-accent">Interested in lessons?</h3>
                                     <p className="text-white/60">Fill out the form below and I'll get back to you as soon as possible.</p>
                                     
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -128,7 +138,22 @@ const Contact = () => {
 
                                     <Textarea className="h-[200px]" name="message" placeholder="Type your message here." value={formData.message} onChange={handleChange} required />
 
-                                    <Button type="submit" size="md" className="max-w-40">Submit</Button>  
+                                    {/* Updated Button with Loading Logic */}
+                                    <Button 
+                                        type="submit" 
+                                        size="md" 
+                                        className="max-w-40 flex items-center justify-center gap-2"
+                                        disabled={isPending} // Disable while sending
+                                    >
+                                        {isPending ? (
+                                            <>
+                                                <ImSpinner8 className="animate-spin text-xl" />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            "Submit"
+                                        )}
+                                    </Button>  
                                 </motion.form>
                             ) : (
                                 <motion.div 
@@ -141,7 +166,7 @@ const Contact = () => {
                                     <h2 className="text-4xl font-semibold text-accent mb-4">Message Received!</h2>
                                     <p className="text-white/60 text-lg max-w-md">
                                         Thanks for reaching out! I've received your request and will get back to you 
-                                        as soon as possible.
+                                        as soon as possible to discuss your chess journey.
                                     </p>
                                     <button 
                                         onClick={() => setIsSubmitted(false)}
@@ -154,7 +179,6 @@ const Contact = () => {
                         </AnimatePresence>
                     </div>
 
-                    {/* Right Column: Contact Info */}
                     <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
                         <ul className="flex flex-col gap-10">
                             {info.map((item, index) => (
