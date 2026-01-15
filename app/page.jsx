@@ -54,7 +54,7 @@ const Home = () => {
           
           <div className="flex-1 flex justify-center md:justify-end items-start">          
             <Image 
-              src="/Naveen_REU.PNG" 
+              src="/Naveen_REU.png" 
               className="h-128 w-full object-cover rounded-xl" 
               width={300} 
               height={500}
