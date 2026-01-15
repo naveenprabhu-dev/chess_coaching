@@ -111,7 +111,7 @@ const Contact = () => {
                                     className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl" 
                                     onSubmit={handleSubmit}
                                 >
-                                    <h3 className="text-4xl text-accent">Interested in lessons?</h3>
+                                    <h3 className="text-4xl text-accent">Want to improve?</h3>
                                     <p className="text-white/60">Fill out the form below and I'll get back to you as soon as possible.</p>
                                     
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -166,7 +166,7 @@ const Contact = () => {
                                     <h2 className="text-4xl font-semibold text-accent mb-4">Message Received!</h2>
                                     <p className="text-white/60 text-lg max-w-md">
                                         Thanks for reaching out! I've received your request and will get back to you 
-                                        as soon as possible to discuss your chess journey.
+                                        as soon as possible.
                                     </p>
                                     <button 
                                         onClick={() => setIsSubmitted(false)}
