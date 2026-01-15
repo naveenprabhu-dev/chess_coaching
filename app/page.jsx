@@ -28,7 +28,8 @@ const Home = () => {
         }}
         className="container mx-auto"
       >
-        <div className="flex flex-col md:flex-row gap-10 items-center">
+        {/* Changed items-center to items-stretch to force equal height */}
+        <div className="flex flex-col md:flex-row gap-6 items-stretch">
           <div className="flex flex-col justify-center items-start w-full md:w-3/5 p-10 bg-[#252528] rounded-xl">
             <p className="text-3xl font-semibold text-accent">
               If you're looking to improve your game, look no further.
@@ -53,8 +54,8 @@ const Home = () => {
           
           <div className="flex-1 flex justify-center md:justify-end items-start">          
             <Image 
-              src="/Naveen_CCC.PNG" 
-              className="h-128 object-cover rounded-xl" 
+              src="/Naveen_REU.PNG" 
+              className="h-128 w-full object-cover rounded-xl" 
               width={300} 
               height={500}
               priority 
