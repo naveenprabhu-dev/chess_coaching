@@ -1,97 +1,203 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { FiMail } from "react-icons/fi";
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const Testimonial = ({ text, author }) => (
-  <div className="p-8 bg-[#252528] rounded-lg border border-white/10 h-full flex flex-col justify-between transition-all duration-300 hover:border-accent hover:shadow-[0_0_20px_rgba(0,225,135,0.2)]">
-    <p className="text-lg italic leading-relaxed mb-6 text-white/90">
-      "{text}"
-    </p>
-    <p className="font-bold text-accent">— {author}</p>
-  </div>
-);
+// Added ImSpinner8 for the loading animation
+import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { ImSpinner8 } from "react-icons/im"; 
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Home = () => {
-  return (
-    <section className="min-h-screen">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ 
-          opacity: 1, 
-          transition: { delay: 0.2, duration: 0.3, ease: "easeIn" } 
-        }}
-        className="container mx-auto"
-      >
-        {/* Changed items-center to items-stretch to force equal height */}
-        <div className="flex flex-col md:flex-row gap-6 items-stretch">
-          <div className="flex flex-col justify-center items-start w-full md:w-3/5 p-10 bg-[#252528] rounded-xl">
-            <p className="text-3xl font-semibold text-accent">
-              If you're looking to improve your game, look no further.
-            </p>
-            <p className="mt-6">
-              I have over 7 years of coaching experience, and over a decade of playing experience. 
-              I've taught private lessons with students from beginners to 1800 USCF, and my students have seen rating increases of over 400 points. 
-              I create personalized lesson plans for every student, with a focus on the practical aspects of chess and how to perform best at tournaments.
-            </p>
-            <p className="mt-6">
-              I offer private coaching, group lessons, and training games. 
-              Check out the services page for more information, or if there's something else in particular you're interested in, let me know. 
-              The first trial lesson is always <span className="text-accent"> free of charge! </span>
-            </p>
-            <Link href="/contact">
-              <Button size="lg" className="mt-8">
-                <FiMail className="mr-2" />
-                Contact
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="flex-1 flex justify-center md:justify-end items-start">          
-            <Image 
-              src="/Naveen_REU.png" 
-              className="h-128 w-full object-cover rounded-xl" 
-              width={300} 
-              height={500}
-              priority 
-              alt="Naveen Coaching"
-            />
-          </div>
-        </div>
+const info = [
+    {
+        icon: <FaPhoneAlt />,
+        title: 'Phone',
+        description: '(919)-579-0897'
+    },
+    {
+        icon: <FaEnvelope />,
+        title: 'Email',
+        description: 'navnp04@gmail.com'
+    }
+];
 
-        <div className="mt-16 pb-20">
-          <h2 className="text-3xl font-semibold text-center mb-10">
-            What my students are saying
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Testimonial 
-              text="Naveen is a great coach, and I've seen my game improve significantly. I was stuck at 1200 USCF for a long time, but after a few months of lessons, I've reached 1600 USCF. I'm very happy with the results!"
-              author="John Doe"
-            />
+const serviceLabels = {
+    "1": "Private Coaching",
+    "2": "Group Coaching",
+    "3": "Training Games",
+    "4": "Other",
+};
 
-            <Testimonial 
-              text="A fantastic mentor for anyone looking to push past their rating plateau. The personalized lesson plans really made a difference. We focused on specific endgames I was struggling with, and I feel much more confident now."
-              author="Jane Smith"
-            />
+const Contact = () => {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isPending, setIsPending] = useState(false); // New state for loading
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        service: '',
+        message: ''
+    });
 
-            <Testimonial 
-              text="Knowledgeable, professional, and very encouraging. Naveen doesn't just show you moves; he explains the 'why' behind them. My opening preparation has never been better thanks to our training games."
-              author="Alex Wong"
-            />
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
 
-            <Testimonial 
-              text="The best investment I've made for my chess career. The training games are incredibly helpful for testing new openings. Naveen provides deep analysis that you just can't get from an engine alone."
-              author="Michael Chen"
-            />
-          </div>
-        </div>
-      </motion.div>
-    </section>
-  )
-} 
+    const handleSelectChange = (value) => {
+        setFormData({
+            ...formData,
+            service: serviceLabels[value]
+        });
+    };
 
-export default Home
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsPending(true); // Start loading
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                alert('Failed to submit the form. Please try again.');
+            }
+        } catch (error) {
+            alert('An error occurred. Please check your connection.');
+        } finally {
+            setIsPending(false); // Stop loading regardless of outcome
+        }
+    };
+
+    return (
+        <motion.section 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.3, ease: "easeIn" } }}
+            className="py-6"
+        >
+            <div className="container mx-auto">
+                <div className="flex flex-col xl:flex-row gap-[30px]">
+                    
+                    <div className="xl:w-[54%] order-2 xl:order-none min-h-[500px]">
+                        <AnimatePresence mode="wait">
+                            {!isSubmitted ? (
+                                <motion.form 
+                                    key="form"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl" 
+                                    onSubmit={handleSubmit}
+                                >
+                                    <h3 className="text-4xl text-accent">Interested in lessons?</h3>
+                                    <p className="text-white/60">Fill out the form below and I'll get back to you as soon as possible.</p>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <Input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required />
+                                        <Input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
+                                        <Input type="text" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
+                                        <Input type="text" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} />
+                                    </div>
+
+                                    <Select onValueChange={handleSelectChange} required>
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Select a service" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectLabel>Select a service</SelectLabel>
+                                                <SelectItem value="1">Private Coaching</SelectItem>
+                                                <SelectItem value="2">Group Coaching</SelectItem>
+                                                <SelectItem value="3">Training Games</SelectItem>
+                                                <SelectItem value="4">Other</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+
+                                    <Textarea className="h-[200px]" name="message" placeholder="Type your message here." value={formData.message} onChange={handleChange} required />
+
+                                    {/* Updated Button with Loading Logic */}
+                                    <Button 
+                                        type="submit" 
+                                        size="md" 
+                                        className="max-w-40 flex items-center justify-center gap-2"
+                                        disabled={isPending} // Disable while sending
+                                    >
+                                        {isPending ? (
+                                            <>
+                                                <ImSpinner8 className="animate-spin text-xl" />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            "Submit"
+                                        )}
+                                    </Button>  
+                                </motion.form>
+                            ) : (
+                                <motion.div 
+                                    key="success"
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="flex flex-col items-center justify-center p-10 bg-[#27272c] rounded-xl border-2 border-dashed border-accent text-center h-full min-h-[580px]"
+                                >
+                                    <div className="text-6xl mb-6">♟️</div>
+                                    <h2 className="text-4xl font-semibold text-accent mb-4">Message Received!</h2>
+                                    <p className="text-white/60 text-lg max-w-md">
+                                        Thanks for reaching out! I've received your request and will get back to you 
+                                        as soon as possible.
+                                    </p>
+                                    <button 
+                                        onClick={() => setIsSubmitted(false)}
+                                        className="mt-8 text-accent underline hover:text-white transition-all"
+                                    >
+                                        Send another message
+                                    </button>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+                    <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
+                        <ul className="flex flex-col gap-10">
+                            {info.map((item, index) => (
+                                <li key={index} className="flex items-center gap-6">
+                                    <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-[#27272c] text-accent rounded-md flex items-center justify-center">
+                                        <div>{item.icon}</div>
+                                    </div>
+                                    <div>
+                                        <p className="text-white/60">{item.title}</p>
+                                        <h3 className="text-xl">{item.description}</h3>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </motion.section>
+    );
+};
+
+export default Contact;
