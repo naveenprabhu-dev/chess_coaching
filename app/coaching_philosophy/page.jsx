@@ -21,7 +21,7 @@ const Coaching_Philosophy = () => {
             Coaching Philosophy
           </h3>
           <p>
-           My coaching philosophy revolves around the practical side of chess - what will help you in your tournaments the most. 
+           My coaching philosophy revolves around the practical side of chess - what will help you to score points in your tournaments. 
            As an active competitor myself, I'll pull back the curtain on my own training routine, and describe what I do at the board to maximize results. 
          </p>
 

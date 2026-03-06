@@ -26,34 +26,33 @@ const Home = () => {
         }}
         className="container mx-auto"
       >
-        {/* Forced flex-row on all screen sizes so they stay side-by-side */}
-        <div className="flex flex-row gap-4 md:gap-6 items-stretch">
+        {/* Reverted back to flex-col on mobile so the text block takes full width */}
+        <div className="flex flex-col md:flex-row gap-6 items-stretch">
           
-          {/* Gave the text 60% width on mobile, adjusted mobile padding so text fits */}
-          <div className="flex flex-col justify-center items-start w-[60%] md:w-3/5 p-4 md:p-10 bg-[#252528] rounded-xl">
-            <p className="text-xl md:text-3xl font-semibold text-accent">
+          <div className="flex flex-col justify-center items-start w-full md:w-3/5 p-6 md:p-10 bg-[#252528] rounded-xl">
+            <p className="text-2xl md:text-3xl font-semibold text-accent">
               If you're looking to improve your game, look no further.
             </p>
-            <p className="mt-4 md:mt-6 text-sm md:text-base">
+            <p className="mt-6">
               I have over 7 years of coaching experience, and over a decade of playing experience. 
               I've taught private lessons with students from beginners to 1800 USCF, and my students have seen rating increases of over 400 points. 
               I create personalized lesson plans for every student, with a focus on the practical aspects of chess and how to perform best at tournaments.
             </p>
-            <p className="mt-4 md:mt-6 text-sm md:text-base">
+            <p className="mt-6">
               I offer private coaching, group lessons, and training games. 
               Check out the services page for more information, or if there's something else in particular you're interested in, let me know. 
               The first trial lesson is always <span className="text-accent"> free of charge! </span>
             </p>
             <Link href="/contact">
-              <Button size="lg" className="mt-6 md:mt-8">
+              <Button size="lg" className="mt-8">
                 <FiMail className="mr-2" />
                 Contact
               </Button>
             </Link>
           </div>
           
-          {/* Gave the image 40% width on mobile. h-full and object-cover make it match the text box height */}
-          <div className="w-[40%] md:flex-1 flex justify-center md:justify-end items-stretch">          
+          {/* Added 'hidden md:flex' so this entire block disappears on screens smaller than 768px */}
+          <div className="hidden md:flex md:flex-1 justify-end items-stretch">          
             <Image 
               src="/Naveen_REU.png" 
               className="h-full w-full object-cover rounded-xl" 
@@ -77,7 +76,7 @@ const Home = () => {
             />
 
             <Testimonial 
-              text="A fantastic mentor for anyone looking to push past their rating plateau. We focused on building a solid opening repertoire, training board vision, and which positions to spend time, and I feel like I understand chess a lot better than I did before."
+              text="A fantastic mentor for anyone looking to push past their rating plateau. We focused on building a solid opening repertoire, training board vision, and which positions to spend time, and I feel like my skills have increased greatly."
               author="Vasishta Tumuluri"
             />
           </div>
