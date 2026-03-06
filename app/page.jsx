@@ -26,36 +26,54 @@ const Home = () => {
         }}
         className="container mx-auto"
       >
-        {/* Reverted back to flex-col on mobile so the text block takes full width */}
-        <div className="flex flex-col md:flex-row gap-6 items-stretch">
+        {/* Changed back to flex-col on mobile, flex-row on desktop */}
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
           
-          <div className="flex flex-col justify-center items-start w-full md:w-3/5 p-6 md:p-10 bg-[#252528] rounded-xl">
-            <p className="text-2xl md:text-3xl font-semibold text-accent">
+          {/* Expanded width to full on mobile, 3/5 on desktop */}
+          <div className="flex flex-col justify-center items-start w-full md:w-3/5 p-5 md:p-10 bg-[#252528] rounded-xl">
+            <p className="text-xl md:text-3xl font-semibold text-accent">
               If you're looking to improve your game, look no further.
             </p>
-            <p className="mt-6">
+            
+            {/* Added leading-relaxed for better readability */}
+            <p className="mt-4 md:mt-6 text-sm md:text-base leading-relaxed">
               I have over 7 years of coaching experience, and over a decade of playing experience. 
               I've taught private lessons with students from beginners to 1800 USCF, and my students have seen rating increases of over 400 points. 
               I create personalized lesson plans for every student, with a focus on the practical aspects of chess and how to perform best at tournaments.
             </p>
-            <p className="mt-6">
+
+            {/* MOBILE IMAGE: Sandwiched between paragraphs, hidden on desktop */}
+            <div className="block md:hidden w-full my-4">
+              <Image 
+                src="/Naveen_REU.png" 
+                className="w-full h-auto object-cover rounded-xl" 
+                width={300} 
+                height={500}
+                priority 
+                alt="Naveen Coaching"
+              />
+            </div>
+
+            {/* Added leading-relaxed for better readability */}
+            <p className="mt-4 md:mt-6 text-sm md:text-base leading-relaxed">
               I offer private coaching, group lessons, and training games. 
               Check out the services page for more information, or if there's something else in particular you're interested in, let me know. 
               The first trial lesson is always <span className="text-accent"> free of charge! </span>
             </p>
+            
             <Link href="/contact">
-              <Button size="lg" className="mt-8">
+              <Button size="lg" className="mt-6 md:mt-8">
                 <FiMail className="mr-2" />
                 Contact
               </Button>
             </Link>
           </div>
           
-          {/* Added 'hidden md:flex' so this entire block disappears on screens smaller than 768px */}
-          <div className="hidden md:flex md:flex-1 justify-end items-stretch">          
+          {/* DESKTOP IMAGE: Hidden on mobile, displays side-by-side on desktop */}
+          <div className="hidden md:flex md:w-2/5 h-auto justify-center md:justify-end">          
             <Image 
               src="/Naveen_REU.png" 
-              className="h-full w-full object-cover rounded-xl" 
+              className="w-full h-auto object-contain rounded-xl" 
               width={300} 
               height={500}
               priority 
