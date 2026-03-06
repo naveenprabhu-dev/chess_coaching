@@ -19,12 +19,12 @@ const Coaching_Philosophy = () => {
           <h3 className="text-xl md:text-3xl text-accent">
             Coaching Philosophy
           </h3>
-          <p className="text-sm md:text-lg leading-relaxed">
+          <p className="text-sm md:text-lg leading-relaxed md:leading-loose">
            My coaching philosophy revolves around the practical side of chess - what will help you to score points in your tournaments. 
            As an active competitor myself, I'll pull back the curtain on my own training routine, and describe what I do at the board to maximize results. 
          </p>
 
-          <p className="text-sm md:text-lg leading-relaxed">
+          <p className="text-sm md:text-lg leading-relaxed md:leading-loose">
            I believe that tactics and calculation are undoubtedly the most important aspect of chess, and must be trained constantly to remain sharp at the board.
            During lessons, I'll show you how to efficiently calculate so that you can focus on the most important lines while improving your time management. 
            We'll also analyze your games, and see where the best areas are for improvement. 
@@ -42,7 +42,7 @@ const Coaching_Philosophy = () => {
               />
           </div>
 
-          <p className="text-sm md:text-lg leading-relaxed">
+          <p className="text-sm md:text-lg leading-relaxed md:leading-loose">
            Additionally, I'll provide you with some puzzles to work on, so that we can discuss at the beginning of the next lesson. 
            When outside of the lesson, feel free to reach out! I'd love to help you prepare openings for tournaments, answer any questions, or just discuss anything chess related!
           </p>
