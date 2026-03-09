@@ -23,7 +23,7 @@ const services = [
   {
     num: '03',
     title: 'Training Games',
-    description: 'I offer training games at 15 minutes per side. You can pick which color or opening you want to work on, or if you want to play without anything specific in mind, that\'s also fine! We\'ll also analyze the game thoroughly afterwards. Rate: $20 per game.',
+    description: 'I offer training games at 15 minutes per side. You can pick which color or opening you want to work on, or if you want to play without anything specific in mind, that\'s also fine! We\'ll also analyze the game thoroughly afterwards. Rate: $30 per game.',
    
   },
 
