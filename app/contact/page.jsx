@@ -108,11 +108,11 @@ const Contact = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl" 
+                                    className="flex flex-col gap-6 p-10 bg-card rounded-xl" 
                                     onSubmit={handleSubmit}
                                 >
                                     <h3 className="text-4xl text-accent">Want to improve?</h3>
-                                    <p className="text-white/60">Fill out the form below and I'll get back to you as soon as possible.</p>
+                                    <p className="text-foreground/60">Fill out the form below and I'll get back to you as soon as possible.</p>
                                     
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <Input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required />
@@ -160,17 +160,17 @@ const Contact = () => {
                                     key="success"
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="flex flex-col items-center justify-center p-10 bg-[#27272c] rounded-xl border-2 border-dashed border-accent text-center h-full min-h-[580px]"
+                                    className="flex flex-col items-center justify-center p-10 bg-card rounded-xl border-2 border-dashed border-accent text-center h-full min-h-[580px]"
                                 >
                                     <div className="text-6xl mb-6">♟️</div>
                                     <h2 className="text-4xl font-semibold text-accent mb-4">Message Received!</h2>
-                                    <p className="text-white/60 text-lg max-w-md">
+                                    <p className="text-foreground/60 text-lg max-w-md">
                                         Thanks for reaching out! I've received your request and will get back to you 
                                         as soon as possible.
                                     </p>
                                     <button 
                                         onClick={() => setIsSubmitted(false)}
-                                        className="mt-8 text-accent underline hover:text-white transition-all"
+                                        className="mt-8 text-accent underline hover:text-foreground transition-all"
                                     >
                                         Send another message
                                     </button>
@@ -183,11 +183,11 @@ const Contact = () => {
                         <ul className="flex flex-col gap-10">
                             {info.map((item, index) => (
                                 <li key={index} className="flex items-center gap-6">
-                                    <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-[#27272c] text-accent rounded-md flex items-center justify-center">
+                                    <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-card text-accent rounded-md flex items-center justify-center">
                                         <div>{item.icon}</div>
                                     </div>
                                     <div>
-                                        <p className="text-white/60">{item.title}</p>
+                                        <p className="text-foreground/60">{item.title}</p>
                                         <h3 className="text-xl">{item.description}</h3>
                                     </div>
                                 </li>

@@ -4,22 +4,37 @@
 
 
 @layer base {
+  /* Light mode (default): background = white, text = black. */
+  :root {
+    --font-jetbrainsMono: 'JetBrains Mono', monospace;
+    --background: #F9F5E3; /* white */
+    --foreground: #283845; /* black */
+    --card: #E3DFC2;
+  }
+
+  /* Dark mode: black and white are swapped. */
+  .dark {
+    --background: #283845; /* black */
+    --foreground: #F9F5E3; /* white */
+    --card: #34424d;
+  }
+
   body {
-    @apply font-primary bg-primary text-white leading-loose;
+    @apply font-primary bg-background text-foreground leading-loose;
+  }
+
+  h1, h2, h3, h4, h5, h6, .h2 {
+    @apply font-heading;
   }
 
   .h2 {
     @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
   }
   .text-outline{
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px var(--foreground);
   }
 
   .text-outline-hover {
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px var(--foreground);
   }
-  :root {
-    --font-jetbrainsMono: 'JetBrains Mono', monospace;
-  }
-  
 }

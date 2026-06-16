@@ -31,7 +31,7 @@ const Stairs = () => {
                     animate="animate"
                     exit="exit"
                     transition={{ duration: 0.35, ease: "easeInOut", delay: 0.1 * reverseIndex(index) }}
-                    className= "h-full w-full bg-white relative"
+                    className= "h-full w-full bg-foreground relative"
                 />
             ))}
         </>

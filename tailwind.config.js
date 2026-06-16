@@ -77,7 +77,9 @@ module.exports = {
       xl: "1350px",
     },
     fontFamily: {
-      primary: "var(--font-jetbrainsMono)",
+      primary: "var(--font-inter)",
+      inter: "var(--font-inter)",
+      heading: "var(--font-jetbrainsMono)",
     },
     extend: {
       height: {
@@ -86,10 +88,16 @@ module.exports = {
         '128': '32rem',
       },
       colors: {
-        primary: '#1c1c22',
+        // Fixed brand colors — names now match the actual color.
+        white: '#F9F5E3',
+        black: '#283845',
+        // Mode-aware tokens (swap between light/dark via CSS vars in globals.css).
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        card: 'var(--card)',
         accent: {
-          DEFAULT: '#00ff99',
-          hover: '#00e187',
+          DEFAULT: '#3AB795',
+          hover: '#2f9a7d',
         },
       },
       keyframes: {
