@@ -53,8 +53,8 @@ const Home = () => {
 
             {/* Added md:leading-loose for wider line spacing on desktop */}
             <p className="mt-4 md:mt-6 text-base md:text-lg leading-relaxed md:leading-loose">
-              I offer private coaching, group lessons, and training games. 
-              Check out the services page for more information, or if there's something else in particular you're interested in, let me know. 
+              I offer private coaching, group lessons, and training games.
+              Check out the <Link href="/services" className="text-accent underline underline-offset-4 hover:text-foreground transition-all">services page</Link> for more information, or if there's something else in particular you're interested in, <Link href="/contact" className="text-accent underline underline-offset-4 hover:text-foreground transition-all">let me know</Link>.
               The first trial lesson is always <span className="text-accent"> free of charge! </span>
             </p>
             
