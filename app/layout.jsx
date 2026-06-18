@@ -23,8 +23,8 @@ export const metadata = {
   description: "Naveen's personal chess coaching practice",
 };
 
-// Applies the saved theme before paint to avoid a flash. Default is always light.
-const themeScript = `(function(){try{if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+// Applies the saved theme before paint to avoid a flash. Default is always dark.
+const themeScript = `(function(){try{document.documentElement.classList.toggle('dark',localStorage.getItem('theme')!=='light');}catch(e){document.documentElement.classList.add('dark');}})();`;
 
 export default function RootLayout({ children }) {
   return (
